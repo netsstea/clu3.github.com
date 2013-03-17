@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Template &middot; Bootstrap</title>
+    <title>Bootstro.js Bootstrap Intro.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -162,7 +162,7 @@
            popovers does not (yet) (issue <a href='https://github.com/twitter/bootstrap/issues/1730'>#1730</a> & <a href='http://stackoverflow.com/questions/10028218/twitter-bootstrap-popovers-multiple-widths-and-other-css-properties'>solution</a>)</p>
           <p><i class='icon-ok'></i> Small (<b>2.7K</b> minified JS & <b>0.5K</b>  minified CSS)</p>
           <p><i class='icon-ok'></i> <b>No collision</b>. Everything <a href='http://enterprisejquery.com/2010/10/how-good-c-habits-can-encourage-bad-javascript-habits-part-1/'>safely</a> namespaced to bootstro.
-          All events are properly unbinded when the intro stops</p>
+          All <b>events unbinded</b> when the intro stops</p>
           <p><i class='icon-ok'></i> <b>Any element anywhere </b> on the page can be intro'ed: popovers are automatically scrolled to so they always get focused</p>
           <p><i class='icon-ok'></i> <b>Easily customizable</b>: Bootstro provides various public methods so you can control as you like bootstrap.start(), bootstrap.next(), bootstrap.prev()...</p>
           <p class='bootstro' bootstro-step='6' bootstro-content='I work with Esc, &rarr;, &larr; keyboard shortcuts too'>
@@ -191,8 +191,9 @@
         >
         <h2>Why?</h2>
         <p>As part of building <a href='http://SandPHP.com'>SandPHP.com</a>'s Javascript functionality, I developed a messy version of Bootstro a few weeks ago. But
-        after seeing the HN's <a href='https://news.ycombinator.com/item?id=5380056'>excitement</a> on <a href='http://usablica.github.com/intro.js/'>intro.js</a>,
+        after seeing HN's <a href='https://news.ycombinator.com/item?id=5380056'>excitement</a> on <a href='http://usablica.github.com/intro.js/'>intro.js</a>,
         I thought Bootstrap lovers might love Bootstro.js. 
+        <br/>
         So I decided to spend the weekend customizing my work into a separate reusable proper tiny utility.
          </p>
        </div>
@@ -221,8 +222,11 @@
            <p> <b>bootstro-width</b> : If you like to bypass bootstrap's default popover width, specify here, like
            <b>bootstro-width='500px'</b>. Don't forget the 'px' suffix [optional]
            </p>
+           <p> <b>bootstro-html</b> : true|false . Whether or not the content will be displayed as HTML or text. Refer to popovers html option.
+           </p>
+           
            <p> <b>bootstro-step</b> : The stack index of the intro'ed popup. 
-           <div class='alert'><i class='icon-warning-sign'></i> Heas up. If you specify bootstro-step for at least
+           <div class='alert'><i class='icon-warning-sign'></i> Heads up. If you specify bootstro-step for at least
            one .bootstro element, then you must provide bootstro-step for all .bootstro elements on the page.
            <br/>
            Otherwise, just leave out bootstro-step attribute altogether, and bootstro will show the popovers from top to bottom
@@ -233,10 +237,10 @@
            
            </div>
          <p><i class='icon-ok'></i> Include <a href='https://github.com/clu3/bootstro.js/blob/master/bootstro.js'>bootstro.js</a> 
-         (after bootstrap.js) & <a href='https://github.com/clu3/bootstro.js/blob/master/bootstro.css'>bootstro.css</a>
+         (after bootstrap.js) & <a href='https://github.com/clu3/bootstro.js/blob/master/bootstro.css'>bootstro.css</a>. There are minified versions too
          </p>  
          <p><i class='icon-ok'></i> Call <b>bootstrap.start(selector, options)</b> inside $(document).ready(function(){})
-         where selector is any jquery selector, <b>defaulted to '.bootstro'</b>
+         where selector is any jquery selector, defaulted to <b> '.bootstro'</b>
          </p>
          <p>
 		<div style='padding-left:30px;'>
@@ -258,7 +262,8 @@
 		</div>
 		
 		<p><i class='icon-ok'></i> To extend bootstro, you can just assign bootstro.yourfunction = {}. 
-		Bootstro's using the prototype written in jqueryenterprise.com's <a href='http://stackoverflow.com/questions/10028218/twitter-bootstrap-popovers-multiple-widths-and-other-css-properties'>blog</a> 
+		Bootstro's using the prototype written in jqueryenterprise.com's 
+		<a href='http://enterprisejquery.com/2010/10/how-good-c-habits-can-encourage-bad-javascript-habits-part-1/'>blog</a> 
 		</p>
 		<p><i class='icon-ok'></i> bootstro's public methods
 		<div style='padding-left:30px;'>
