@@ -111,9 +111,9 @@
 
       <div class="masthead">
         <h3 class="muted">Bootstro.js</h3>
-        <div class="navbar bootstro" bootstro-step="4" bootstro-title="I am the 5th popover" 
-        	bootstro-content="Even though I am at the top of the page. It is so because i have <b>bootstro-step=4</b> (starting from 0)"
-        	bootstro-placement="bottom"
+        <div class="navbar bootstro" data-bootstro-step="4" data-bootstro-title="I am the 5th popover" 
+        	data-bootstro-content="Even though I am at the top of the page. It is so because i have <b>data-bootstro-step=4</b> (starting from 0)"
+        	data-bootstro-placement="bottom"
         >
           <div class="navbar-inner">
             <div class="container">
@@ -130,10 +130,10 @@
       <!-- Jumbotron -->
       <div class="jumbotron">
         <h1 class='bootstro' 
-        	bootstro-title='Hello, I am a normal BOOTSTRAP popover' 
-        	bootstro-content="Because bootstrap rocks. Life before bootstrap was sooo miserable"
-        	bootstro-width="400px" 
-        	bootstro-placement='bottom' bootstro-step='0'>Bootstro.js</h1>
+        	data-bootstro-title='Hello, I am a normal BOOTSTRAP popover' 
+        	data-bootstro-content="Because bootstrap rocks. Life before bootstrap was sooo miserable"
+        	data-bootstro-width="400px" 
+        	data-bootstro-placement='bottom' data-bootstro-step='0'>Bootstro.js</h1>
         <p class="lead">
 			Bootstrap-intro.js: Show your users a guided tour of what is what on a page. 
 			<br/>Especially, for  first-time users. 
@@ -152,11 +152,11 @@
       <!-- Example row of columns -->
       <div class="row-fluid">
         <div class="span4 bootstro" 
-        	bootstro-title="I can align to [left,right,bottom,top]" 
-        	bootstro-content="Simply because I am a popover. Specify me with <b>bootstro-placement</b>"
-        	bootstro-placement='right'
-        	bootstro-width='400px'
-        	 bootstro-step='3'
+        	data-bootstro-title="I can align to [left,right,bottom,top]" 
+        	data-bootstro-content="Simply because I am a popover. Specify me with <b>data-bootstro-placement</b>"
+        	data-bootstro-placement='right'
+        	data-bootstro-width='400px'
+        	 data-bootstro-step='3'
         >
           <h2>Features</h2>
           <p><i class='icon-ok'></i> Works <b>cross-browser, cross-devices</b> . C'mon, it is bootstrap</p>
@@ -168,16 +168,16 @@
           All <b>events unbinded</b> when the intro stops</p>
           <p><i class='icon-ok'></i> <b>Any element anywhere </b> on the page can be intro'ed: popovers are automatically scrolled to so they always get focused</p>
           <p><i class='icon-ok'></i> <b>Easily customizable</b>: Bootstro provides various public methods so you can control as you like bootstrap.start(), bootstrap.next(), bootstrap.prev()...</p>
-          <p class='bootstro' bootstro-step='6' bootstro-content='I work with Esc, &rarr; &darr;, &larr; &uarr; keyboard shortcuts too'>
+          <p class='bootstro' data-bootstro-step='6' data-bootstro-content='I work with Esc, &rarr; &darr;, &larr; &uarr; keyboard shortcuts too'>
           <i class='icon-ok'></i> <b>Keyboard shortcuts</b>: Works with Esc, &rarr; &darr;, &larr; &uarr; shortcuts too</p>
           
           
         </div>
       
         <div class="span4 bootstro" 
-        	bootstro-title="I am simple" 
-        	bootstro-content="Call bootstro.start('.bootstro') or just <b>bootstro.start()</b>"
-        	bootstro-step='1'
+        	data-bootstro-title="I am simple" 
+        	data-bootstro-content="Call bootstro.start('.bootstro') or just <b>bootstro.start()</b>"
+        	data-bootstro-step='1'
         	>
           <h2>Quick Usage</h2>
           <p><i class='icon-ok'></i> Bootstro requires <a href='http://twitter.github.com/bootstrap/'>bootstrap</a> & <a href='http://twitter.github.com/bootstrap/javascript.html#popovers'>bootstrap popover</a>
@@ -187,10 +187,10 @@
          <p><i class='icon-ok'></i> bootstrap.start()</p>
         </div>
         <div class="span4 bootstro" 
-        	bootstro-title="I can resize my width too" 
-        	bootstro-content="By adding <b>bootstro-width</b> attribute"
-        	bootstro-width="600px"
-         	bootstro-step='2'
+        	data-bootstro-title="I can resize my width too" 
+        	data-bootstro-content="By adding <b>data-bootstro-width</b> attribute"
+        	data-bootstro-width="600px"
+         	data-bootstro-step='2'
         >
         <h2>Why?</h2>
         <p>As part of building a KhanAcademy clone using our home grown SandPHP framework , 
@@ -213,32 +213,32 @@
           <p><i class='icon-ok'></i> Bootstro requires <a href='http://twitter.github.com/bootstrap/'>bootstrap</a> & <a href='http://twitter.github.com/bootstrap/javascript.html#popovers'>bootstrap popover</a>
           </p>
           <p><i class='icon-ok'></i> Add class <b>.bootstro</b> to any element that you'd like to be highlighted</p>
-          <p><i class='icon-ok'></i> Specify the highlighted (intro'ed) element's popover with bootstro-* prefix, where
+          <p><i class='icon-ok'></i> Specify the highlighted (intro'ed) element's popover with data-bootstro-* prefix, where
           * can be one of the bootstrap popover's <a href='http://twitter.github.com/bootstrap/javascript.html#popovers'>options</a>.
           <div style='padding-left:30px;'>
           <p> <i class='icon-ok'></i> At the bare minium, you should probably provide
-           <b>bootstro-title</b> and <b>bootstro-content</b>.
+           <b>data-bootstro-title</b> and <b>data-bootstro-content</b>.
            </p>
            
-           <p> <b>bootstro-title</b> : Title of the popover [optional, defaulted to '']
+           <p> <b>data-bootstro-title</b> : Title of the popover [optional, defaulted to '']
            </p>
-           <p> <b>bootstro-content</b> : Content of the popover [optional, defaulted to '']
+           <p> <b>data-bootstro-content</b> : Content of the popover [optional, defaulted to '']
            </p>
-           <p> <b>bootstro-placement</b> : Placement position [top,bottom,left,right] of the popover [optional, defaulted to 'top']
+           <p> <b>data-bootstro-placement</b> : Placement position [top,bottom,left,right] of the popover [optional, defaulted to 'top']
            </p>
-           <p> <b>bootstro-width</b> : If you like to bypass bootstrap's default popover  
+           <p> <b>data-bootstro-width</b> : If you like to bypass bootstrap's default popover  
            <a href='https://github.com/twitter/bootstrap/issues/1730'>un-settable</a> width, specify it like
-           <b>bootstro-width='500px'</b>. Don't forget the 'px' suffix [optional]
+           <b>data-bootstro-width='500px'</b>. Don't forget the 'px' suffix [optional]
            </p>
-           <p> <b>bootstro-html</b> : true|false . Whether or not the popover content will be displayed as HTML or text. Refer to popovers html option.
+           <p> <b>data-bootstro-html</b> : true|false . Whether or not the popover content will be displayed as HTML or text. Refer to popovers html option.
            </p>
            
-           <p> <b>bootstro-step</b> : The stack index of the intro'ed popover. 
-           <div class='alert'><i class='icon-warning-sign'></i> Heads up! If you specify bootstro-step for at least
-           one .bootstro element, then you must provide bootstro-step for all .bootstro elements on the page.
+           <p> <b>data-bootstro-step</b> : The stack index of the intro'ed popover. 
+           <div class='alert'><i class='icon-warning-sign'></i> Heads up! If you specify data-bootstro-step for at least
+           one .bootstro element, then you must provide data-bootstro-step for all .bootstro elements on the page.
            
            <br/>
-           Otherwise, just leave out bootstro-step attribute altogether, 
+           Otherwise, just leave out data-bootstro-step attribute altogether, 
            and the popovers will follow their natural order
            </div>
            
@@ -276,7 +276,6 @@
 			</p> 
 			
 			
-			
 		</div>
 		
 		<p><i class='icon-ok'></i> To extend bootstro, you can just assign bootstro.yourfunction = {}. 
@@ -310,9 +309,9 @@
 
 		<hr/>
       <div class="footer bootstro" 
-      	bootstro-title='I can scroll down here too'
-      	 bootstro-content='So yeah, basically I always get the focus'
-      	  bootstro-step='5'
+      	data-bootstro-title='I can scroll down here too'
+      	 data-bootstro-content='So yeah, basically I always get the focus'
+      	  data-bootstro-step='5'
       	 >
       	 <h3>About</h3>
       	 <div class='well'>
@@ -322,6 +321,7 @@
 	        </p>
 	        <p>Bootstrap template : Copied from <a href='http://twitter.github.com/bootstrap/examples/justified-nav.html'>here</a>
 	        </p>
+	        <p>Woo hoo, Bootstro.js made it to HN's front page. Isn't it nice. Thanks a lot HN. I'm gonna <a href='http://codersquare.com/bootstro-HN-frontpage.png' target='_blank'>capture it</a></p>, just to show off to <a href='http://byfat.xxx/what-is-opensource-and-why-do-i-feel-so-guilty'>get a girlfriend</a>. Just joking (I adore @fat and bootstrap)
         </div>
       </div>
 
