@@ -142,6 +142,9 @@
 		</p>
         <a class="btn btn-large btn-success" href="#" id='demo'>Click me! I'm a Demo</a>
         <br/>
+        If you don't want to stop the show on clicking the backdrop, try it passing option
+         stopOnBackdropClick=false <a class='demo_stopOnBackdropClick' href='#'>Demo</a>
+        <br/>
       </div>
 
       <hr>
@@ -268,6 +271,10 @@
 			<p><b>finishButton</b>: HTML for the prev button. It must include a class 'bootstro-finish-btn'.
 				defaulted to <pre>< button class="btn btn-mini btn-success bootstro-finish-btn">< i class="icon-ok" >< /i> Ok I got it, get back to the site< /button></pre>
 			</p> 
+			<p><b>stopOnBackdropClick</b>: true|false. If true, show will stop onclick on the backdrop. Defaulted to <b>true</b>.
+			Try stopOnBackdropClick=false <a class='demo_stopOnBackdropClick' href='#'>here</a>
+			</p> 
+			
 			
 			
 		</div>
@@ -332,6 +339,11 @@
 		    $("#demo").click(function(){
 		        bootstro.start();    
 		    });
+		    $(".demo_stopOnBackdropClick").click(function(){
+		        alert('Clicking on the backdrop will NOT stop the show')
+		        bootstro.start('.bootstro', {stopOnBackdropClick : false});    
+		    });
+		    
 		});
 	</script>
   </body>
