@@ -142,8 +142,8 @@
 		</p>
         <a class="btn btn-large btn-success" href="#" id='demo'>Click me! I'm a Demo</a>
         <br/>
-        If you don't want to stop the show on clicking the backdrop, try it passing option
-         stopOnBackdropClick=false <a class='demo_stopOnBackdropClick' href='#'>Demo</a>
+        If you don't want to stop the show on clicking the backdrop or Esc, try it passing option
+         <b>stopOnBackdropClick</b>=false or <b>stopOnEsc</b>=false. See <a class='demo_stopOn' href='#'>Demo</a>
         <br/>
       </div>
 
@@ -167,7 +167,7 @@
           <p><i class='icon-ok'></i> <b>No collision</b>. Everything <a href='http://enterprisejquery.com/2010/10/how-good-c-habits-can-encourage-bad-javascript-habits-part-1/'>safely</a> namespaced to bootstro.
           All <b>events unbinded</b> when the intro stops</p>
           <p><i class='icon-ok'></i> <b>Any element anywhere </b> on the page can be intro'ed: popovers are automatically scrolled to so they always get focused</p>
-          <p><i class='icon-ok'></i> <b>Easily customizable</b>: Bootstro provides various public methods so you can control as you like bootstrap.start(), bootstrap.next(), bootstrap.prev()...</p>
+          <p><i class='icon-ok'></i> <b>Easily customizable</b>: Bootstro provides various public methods so you can control as you like bootstro.start(), bootstro.next(), bootstro.prev()...</p>
           <p class='bootstro' data-bootstro-step='6' data-bootstro-content='I work with Esc, &rarr; &darr;, &larr; &uarr; keyboard shortcuts too'>
           <i class='icon-ok'></i> <b>Keyboard shortcuts</b>: Works with Esc, &rarr; &darr;, &larr; &uarr; shortcuts too</p>
           
@@ -184,7 +184,7 @@
           </p>
           <p><i class='icon-ok'></i> Add class <b>.bootstro</b> to any element that you'd like to be highlighted</p>
          <p><i class='icon-ok'></i> Include bootstro.js & bootstro.css</p>  
-         <p><i class='icon-ok'></i> bootstrap.start()</p>
+         <p><i class='icon-ok'></i> bootstro.start()</p>
         </div>
         <div class="span4 bootstro" 
         	data-bootstro-title="I can resize my width too" 
@@ -253,7 +253,7 @@
          <div style='padding-left:30px;'>
          	<pre>
          	$(document).ready(function(){
-         		bootstrap.start(selector, options);
+         		bootstro.start(selector, options);
         	});
          	</pre>
 	         where selector is any jquery selector, defaulted to <b> '.bootstro'</b>
@@ -272,7 +272,10 @@
 				defaulted to <pre>< button class="btn btn-mini btn-success bootstro-finish-btn">< i class="icon-ok" >< /i> Ok I got it, get back to the site< /button></pre>
 			</p> 
 			<p><b>stopOnBackdropClick</b>: true|false. If true, show will stop onclick on the backdrop. Defaulted to <b>true</b>.
-			Try stopOnBackdropClick=false <a class='demo_stopOnBackdropClick' href='#'>here</a>
+			Try stopOnBackdropClick=false <a class='demo_stopOn' href='#'>here</a>
+			</p> 
+			<p><b>stopOnEsc</b>: true|false. If true, show will stop onclick on Esc keypress. Defaulted to <b>true</b>.
+			Try stopOnEsc=false <a class='demo_stopOn' href='#'>here</a>
 			</p> 
 			
 			
@@ -284,24 +287,24 @@
 		</p>
 		<p><i class='icon-ok'></i> bootstro's public methods
 		<div style='padding-left:30px;'>
-			<p><b>bootstr.start(selector, options)</b> : Init & Start the popover show
+			<p><b>bootstro.start(selector, options)</b> : Init & Start the popover show
 			</p>
-			<p><b>bootstr.go_to(i)</b> : Show the popover at the stack index i
+			<p><b>bootstro.go_to(i)</b> : Show the popover at the stack index i
 			</p>
-			<p><b>bootstr.stop()</b> : Stop slide show
+			<p><b>bootstro.stop()</b> : Stop slide show
 			</p>
-			<p><b>bootstr.next()</b> : Go to next popover
+			<p><b>bootstro.next()</b> : Go to next popover
 			</p>
-			<p><b>bootstr.prev()</b> : Go to previous popover
+			<p><b>bootstro.prev()</b> : Go to previous popover
 			</p>
-			<p><b>bootstr.bind()</b> : Initialize & bind handlers for keypress, click on the nav events 
+			<p><b>bootstro.bind()</b> : Initialize & bind handlers for keypress, click on the nav events 
 			</p>
-			<p><b>bootstr.unbind()</b> : Unbind all the initialized bootstro handlers 
+			<p><b>bootstro.unbind()</b> : Unbind all the initialized bootstro handlers 
 			</p>
 			<p></p>
 					<p>With that, probably Bootstro can be easily customized to show all the popovers at once, not just a slideshow</p>				
 		</div>
-		<p><a class="btn" href="http://github.com/clu3/bootstro.js">View source code &raquo;</a></p>
+		<p><a class="btn" href="http://github.com/clu3/bootstro.js">Fork me on github &raquo;</a></p>
 		
 		</div>
 
@@ -314,12 +317,12 @@
       	 <h3>About</h3>
       	 <div class='well'>
 	        <p>This work is part of <a href='http://sandphp.com'>SandPHP.com</a>'s Javascript library
-	        By <a href='http://github.com/clu3'>clu3</a>, 
+	        by <a href='http://github.com/clu3'>clu3</a>, 
 	        	with <a href='http://twitter.github.com/bootstrap/examples/justified-nav.html'>Bootstrap marketing template</a>
 	        </p>
 	        <p>Woo hoo, Bootstro.js made it to HN's front page. Isn't it nice. 
 	        Thanks a lot HN. I'm gonna <a href='http://codersquare.com/bootstro-HN-frontpage.png' target='_blank'>capture it</a>
-	        , just to show off to <a href='http://byfat.xxx/what-is-opensource-and-why-do-i-feel-so-guilty'>get a girlfriend</a> haha. Just joking (btw, both <a href='https://github.com/fat'>@fat</a> is unbelievably great)
+	        , just to show off to <a href='http://byfat.xxx/what-is-opensource-and-why-do-i-feel-so-guilty'>get a girlfriend</a> haha. Just joking (btw <a href='https://github.com/fat'>@fat</a> is unbelievably great)
 	        <p><b>Update</b>: Bootstrap.js has made it github's 
 	        	<a href='https://github.com/explore'>top 4 trending repo</a> . 
 	        Another <a target='_blank' href='http://codersquare.com/bootstro-trending-repo.png'>capture</a> for myself ^^ 
@@ -341,9 +344,9 @@
 		    $("#demo").click(function(){
 		        bootstro.start();    
 		    });
-		    $(".demo_stopOnBackdropClick").click(function(){
-		        alert('Clicking on the backdrop will NOT stop the show')
-		        bootstro.start('.bootstro', {stopOnBackdropClick : false});    
+		    $(".demo_stopOn").click(function(){
+		        alert('Clicking on the backdrop or Esc will NOT stop the show')
+		        bootstro.start('.bootstro', {stopOnBackdropClick : false, stopOnEsc:false});    
 		    });
 		    
 		});
