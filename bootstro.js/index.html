@@ -141,14 +141,19 @@
 			 Use it with Bootstrap.
 		</p>
         <a class="btn btn-large btn-success" href="#" id='demo'>Click me! I'm a Demo</a>
-        <br/>
-        If you don't want to stop the show on clicking the backdrop or Esc, try it passing option
-         <b>stopOnBackdropClick</b>=false or <b>stopOnEsc</b>=false. See <a class='demo_stopOn' href='#'>Demo</a>
-        <br/>
       </div>
 
+      <div class='row-fluid bootstro_size1' data-bootstro-title="When there's only me" data-bootstro-content="Then there's only a simple popover. Nothing else">
+      Other demos: <br/>
+	      <a class='demo_stopOn' href='#'>No escaping</a> :
+	        If you don't want to stop the show on clicking the backdrop or Esc, pass <b>stopOnBackdropClick</b>=false or <b>stopOnEsc</b>=false
+	      <br/>
+	      <a class='demo_size1' href='#'>One element</a>: When there's only one element
+	      <br/>
+	      <a class='demo_nonav' href='#'>No navigation buttons</a>: By passing nextButton='', prevButton='',finishButton=''
+      </div>
+      
       <hr>
-
       <!-- Example row of columns -->
       <div class="row-fluid">
         <div class="span4 bootstro" 
@@ -264,12 +269,15 @@
 			
 			<p><b>nextButton</b>: HTML for the next button. It must include a class 'bootstro-next-btn'.
 				defaulted to <pre>< button class="btn btn-primary btn-mini bootstro-next-btn">Next &raquo;< /button></pre>
+				Pass '' if you don't want the buttons (and just using nav keys)
 			</p>				
 			<p><b>prevButton</b>: HTML for the prev button. It must include a class 'bootstro-prev-btn'.
 				defaulted to <pre>< button class="btn btn-primary btn-mini bootstro-prev-btn">Next &laquo;< /button></pre>
+				Pass '' if you don't want the buttons (and just using nav keys)
 			</p>	
 			<p><b>finishButton</b>: HTML for the prev button. It must include a class 'bootstro-finish-btn'.
 				defaulted to <pre>< button class="btn btn-mini btn-success bootstro-finish-btn">< i class="icon-ok" >< /i> Ok I got it, get back to the site< /button></pre>
+				Pass '' if you don't want the buttons (and just using nav keys)
 			</p> 
 			<p><b>stopOnBackdropClick</b>: true|false. If true, show will stop onclick on the backdrop. Defaulted to <b>true</b>.
 			Try stopOnBackdropClick=false <a class='demo_stopOn' href='#'>here</a>
@@ -347,6 +355,16 @@
 		    $(".demo_stopOn").click(function(){
 		        alert('Clicking on the backdrop or Esc will NOT stop the show')
 		        bootstro.start('.bootstro', {stopOnBackdropClick : false, stopOnEsc:false});    
+		    });
+		    $(".demo_size1").click(function(){
+		        bootstro.start('.bootstro_size1');    
+		    });
+		    $(".demo_nonav").click(function(){
+		        bootstro.start('.bootstro', {
+		            nextButton : '',
+		            prevButton : '',
+		            finishButton : ''
+		        });    
 		    });
 		    
 		});
