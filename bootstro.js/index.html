@@ -350,7 +350,16 @@
 	<script>
 		$(document).ready(function(){
 		    $("#demo").click(function(){
-		        bootstro.start();    
+		        bootstro.start(".bootstro", {
+		            onComplete : function(params)
+		            {
+		                alert("Reached end of introduction with total " + (params.idx + 1)+ " slides");
+		            },
+		            onExit : function(params)
+		            {
+		                alert("Introduction stopped at slide #" + (params.idx + 1));
+		            },
+		        });    
 		    });
 		    $(".demo_stopOn").click(function(){
 		        alert('Clicking on the backdrop or Esc will NOT stop the show')

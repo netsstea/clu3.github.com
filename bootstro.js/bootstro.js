@@ -2,8 +2,6 @@
  * Bootstro.js Simple way to show your user around, especially first time users 
  * Http://github.com/clu3/bootstro.js
  * 
- * Use it freely as you like
- * 
  * Credit thanks to 
  * Revealing Module Pattern from 
  * http://enterprisejquery.com/2010/10/how-good-c-habits-can-encourage-bad-javascript-habits-part-1/
@@ -22,34 +20,62 @@ $(document).ready(function(){
         var activeIndex = null; //index of active item
 
         var defaults = {
-            nextButton : '<button class="btn btn-primary btn-mini bootstro-next-btn">Next &raquo;</button>',
-            prevButton : '<button class="btn btn-primary btn-mini bootstro-prev-btn">&laquo; Prev</button>',
-            finishButton : '<button class="btn btn-mini btn-success bootstro-finish-btn"><i class="icon-ok"></i> Ok I got it, get back to the site</button>',
+            nextButtonText : 'Next &raquo;', //will be wrapped with button as below
+            //nextButton : '<button class="btn btn-primary btn-mini bootstro-next-btn">Next &raquo;</button>',
+            prevButtonText : '&laquo; Prev',
+            //prevButton : '<button class="btn btn-primary btn-mini bootstro-prev-btn">&laquo; Prev</button>',
+            finishButtonText : '<i class="icon-ok"></i> Ok I got it, get back to the site',
+            //finishButton : '<button class="btn btn-mini btn-success bootstro-finish-btn"><i class="icon-ok"></i> Ok I got it, get back to the site</button>',
             stopOnBackdropClick : true,
-            stopOnEsc : true
+            stopOnEsc : true,
+            
+            //onComplete : function(params){} //params = {idx : activeIndex}
+            //onExit : function(params){} //params = {idx : activeIndex}
+            //onStep : function(params){} //params = {idx : activeIndex, direction : [next|prev]}
         };
         var settings;
         
         
         //===================PRIVATE METHODS======================
+        //http://stackoverflow.com/questions/487073/check-if-element-is-visible-after-scrolling
+        function is_entirely_visible($elem)
+        {
+            var docViewTop = $(window).scrollTop();
+            var docViewBottom = docViewTop + $(window).height();
+
+            var elemTop = $elem.offset().top;
+            var elemBottom = elemTop + $elem.height();
+
+            return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom)
+              && (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
+        }
+        
         //add the nav buttons to the popover content;
         
         function add_nav_btn(content, i)
         {
-            count = $elements.size();
+            var $el = get_element(i);
+            
             content = content + "<div class='bootstro-nav-wrapper'>";
+            var nextButton = $el.attr('data-bootstro-nextButton') || (settings.nextButton || 
+                '<button class="btn btn-primary btn-mini bootstro-next-btn">' + ($el.attr('data-bootstro-nextButtonText') || settings.nextButtonText)  + '</button>');
+            var prevButton = $el.attr('data-bootstro-prevButton') || (settings.prevButton || 
+                    '<button class="btn btn-primary btn-mini bootstro-prev-btn">' + ($el.attr('data-bootstro-prevButtonText') || settings.prevButtonText)  + '</button>');
+            var finishButton = $el.attr('data-bootstro-finishButton') || (settings.finishButton || 
+                    '<button class="btn btn-primary btn-mini bootstro-finish-btn">' + ($el.attr('data-bootstro-finishButtonText') || settings.finishButtonText)  + '</button>');
+        
             if (count != 1)
             {
                 if (i == 0)
-                    content = content + settings.nextButton;
+                    content = content + nextButton;
                 else if (i == count -1 )
-                    content = content + settings.prevButton;
+                    content = content + prevButton;
                 else 
-                    content = content + settings.nextButton + settings.prevButton
+                    content = content + nextButton + prevButton
             }
             content = content + '</div>';
               
-            content = content +'<div class="bootstro-finish-btn-wrapper">' + settings.finishButton + '</div>';
+            content = content +'<div class="bootstro-finish-btn-wrapper">' + finishButton + '</div>';
             return content;
         }
         
@@ -144,9 +170,10 @@ $(document).ready(function(){
             bootstro.destroy_popover(activeIndex);
             bootstro.unbind();
             $("div.bootstro-backdrop").remove();
+            if (typeof settings.onExit == 'function')
+                settings.onExit.call(this,{idx : activeIndex});
         };
 
-        
         //go to the popover number idx starting from 0
         bootstro.go_to = function(idx) 
         {
@@ -159,50 +186,116 @@ $(document).ready(function(){
                 
                 $el.popover(p).popover('show');
                   
-                min = Math.min($(".popover.in").offset().top, $el.offset().top);
-                $('html,body').animate({
-                    scrollTop: min - 20},
-                'slow');
+                var docviewTop = $(window).scrollTop();
+                var windowHeight = $(window).height();
+                var docviewBottom =  docviewTop + windowHeight;
+                var top = Math.min($(".popover.in").offset().top, $el.offset().top);
+                var bottom =  Math.max($(".popover.in").offset().bottom, $el.offset().bottom);
+                
+                //distance between docviewTop & min.
+                var topDistance = top - docviewTop;
+                settings.margin = 100;
+                
+                if (topDistance < settings.margin)
+                    $('html,body').animate({
+                        scrollTop: top - settings.margin},
+                    'slow');
+                else if(!is_entirely_visible($(".popover.in")) || !is_entirely_visible($el))
+                    $('html,body').animate({
+                        scrollTop: top - settings.margin},
+                    'slow');
                 // html 
                   
                 $el.addClass('bootstro-highlight');
                 activeIndex = idx;
             }
         };
+        
         bootstro.next = function()
         {
             if (activeIndex + 1 == count)
             {
-                alert('End of introduction');
+                if (typeof settings.onComplete == 'function')
+                    settings.onComplete.call(this, {idx : activeIndex});//
             }
             else 
+            {
                 bootstro.go_to(activeIndex + 1);
+                if (typeof settings.onStep == 'function')
+                    settings.onStep.call(this, {idx : activeIndex, direction : 'next'});//
+            }
         };
         
         bootstro.prev = function()
         {
             if (activeIndex == 0)
             {
-                alert('At start of intros');
+                /*
+                if (typeof settings.onRewind == 'function')
+                    settings.onRewind.call(this, {idx : activeIndex, direction : 'prev'});//
+                */
             }
-            else 
+            else
+            {
                 bootstro.go_to(activeIndex -1);
+                if (typeof settings.onStep == 'function')
+                    settings.onStep.call(this, {idx : activeIndex, direction : 'prev'});//
+            }
+        };
+        
+        bootstro._start = function(selector)
+        {
+            selector = selector || '.bootstro';
+
+            $elements = $(selector);
+            count  = $elements.size();
+              
+            if (count > 0 && $('div.bootstro-backdrop').length === 0)
+            {
+                // Prevents multiple copies
+                $('<div class="bootstro-backdrop"></div>').appendTo('body');
+                bootstro.bind();
+                bootstro.go_to(0);
+            }
         };
         
         bootstro.start = function(selector, options)
         {
-            
             settings = $.extend(true, {}, defaults); //deep copy
-            //TODO: if options specifies a URL, get the intro text array from URL
             $.extend(settings, options || {});
+            //if options specifies a URL, get the intro configuration from URL via ajax
+            if (typeof options.url != 'undefined')
+            {
+                //get config from ajax
+                $.ajax({
+                    url : options.url,
+                    success : function(data){
+                        if (data.success)
+                        {
+                            //result is an array of {selector:'','title':'','width', ...}
+                            var popover = data.result;
+                            //console.log(popover);
+                            var selectorArr = [];
+                            $.each(popover, function(i,e){
+                                //only deal with the visible element
+                                //build the selector
+                                $.each(e, function(j, attr){
+                                    $(e.selector).attr('data-bootstro-' + j, attr);
+                                });
+                                if ($(e.selector).is(":visible"))
+                                    selectorArr.push(e.selector);
+                            });
+                            selector = selectorArr.join(",");
+                            bootstro._start(selector);
+                        }
+                    }
+                });
+            }
+            else 
+            {
+                bootstro._start(selector);
+            }
             
-            selector = selector || '.bootstro';
-            $elements = $(selector);
-            count  = $elements.size();
-              
-            $('<div class="bootstro-backdrop"></div>').appendTo('body');
-            bootstro.bind();
-            bootstro.go_to(0);
         };
           
         //bind the nav buttons click event
