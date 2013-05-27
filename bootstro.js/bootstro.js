@@ -32,6 +32,11 @@ $(document).ready(function(){
             //onComplete : function(params){} //params = {idx : activeIndex}
             //onExit : function(params){} //params = {idx : activeIndex}
             //onStep : function(params){} //params = {idx : activeIndex, direction : [next|prev]}
+            //url : String // ajaxed url to get show data from
+            
+            margin : 100, //if the currently shown element's margin is less than this value
+            // the element should be scrolled so that i can be viewed properly. This is useful 
+            // for sites which have fixed top/bottom nav bar
         };
         var settings;
         
@@ -55,14 +60,57 @@ $(document).ready(function(){
         function add_nav_btn(content, i)
         {
             var $el = get_element(i);
+            var nextButton, prevButton, finishButton;
             
             content = content + "<div class='bootstro-nav-wrapper'>";
-            var nextButton = $el.attr('data-bootstro-nextButton') || (settings.nextButton || 
-                '<button class="btn btn-primary btn-mini bootstro-next-btn">' + ($el.attr('data-bootstro-nextButtonText') || settings.nextButtonText)  + '</button>');
-            var prevButton = $el.attr('data-bootstro-prevButton') || (settings.prevButton || 
-                    '<button class="btn btn-primary btn-mini bootstro-prev-btn">' + ($el.attr('data-bootstro-prevButtonText') || settings.prevButtonText)  + '</button>');
-            var finishButton = $el.attr('data-bootstro-finishButton') || (settings.finishButton || 
-                    '<button class="btn btn-primary btn-mini bootstro-finish-btn">' + ($el.attr('data-bootstro-finishButtonText') || settings.finishButtonText)  + '</button>');
+            if ($el.attr('data-bootstro-nextButton'))
+            {
+                nextButton = $el.attr('data-bootstro-nextButton');
+            }
+            else if ( $el.attr('data-bootstro-nextButtonText') )
+            {
+                nextButton = '<button class="btn btn-primary btn-mini bootstro-next-btn">' + $el.attr('data-bootstro-nextButtonText') +  '</button>';
+            }
+            else 
+            {
+                if (typeof settings.nextButton != 'undefined' /*&& settings.nextButton != ''*/)
+                    nextButton = settings.nextButton;
+                else
+                    nextButton = '<button class="btn btn-primary btn-mini bootstro-next-btn">' + settings.nextButtonText + '</button>';
+            }
+            
+            if ($el.attr('data-bootstro-prevButton'))
+            {
+                prevButton = $el.attr('data-bootstro-prevButton');
+            }
+            else if ( $el.attr('data-bootstro-prevButtonText') )
+            {
+                prevButton = '<button class="btn btn-primary btn-mini bootstro-prev-btn">' + $el.attr('data-bootstro-prevButtonText') +  '</button>';
+            }
+            else 
+            {
+                if (typeof settings.prevButton != 'undefined' /*&& settings.prevButton != ''*/)
+                    prevButton = settings.prevButton;
+                else
+                    prevButton = '<button class="btn btn-primary btn-mini bootstro-prev-btn">' + settings.prevButtonText + '</button>';
+            }
+            
+            if ($el.attr('data-bootstro-finishButton'))
+            {
+                finishButton = $el.attr('data-bootstro-finishButton');
+            }
+            else if ( $el.attr('data-bootstro-finishButtonText') )
+            {
+                finishButton = '<button class="btn btn-primary btn-mini bootstro-finish-btn">' + $el.attr('data-bootstro-finishButtonText') +  '</button>';
+            }
+            else 
+            {
+                if (typeof settings.finishButton != 'undefined' /*&& settings.finishButton != ''*/)
+                    finishButton = settings.finishButton;
+                else
+                    finishButton = '<button class="btn btn-primary btn-mini bootstro-finish-btn">' + settings.finishButtonText + '</button>';
+            }
+
         
             if (count != 1)
             {
@@ -103,7 +151,7 @@ $(document).ready(function(){
         get_popup = function(i)
         {
             var p = {};
-            $el = get_element(i);
+            var $el = get_element(i);
             //p.selector = selector;
             var t = '';
             if (count > 1)
@@ -147,10 +195,10 @@ $(document).ready(function(){
         //destroy popover at stack index i
         bootstro.destroy_popover = function(i)
         {
-            i = i || 0;
+            var i = i || 0;
             if (i != 'all')
             {
-                $el = get_element(i);//$elements.eq(i); 
+                var $el = get_element(i);//$elements.eq(i); 
                 $el.popover('destroy').removeClass('bootstro-highlight');
             }
             /*
@@ -181,26 +229,24 @@ $(document).ready(function(){
             bootstro.destroy_popover(activeIndex);
             if (count != 0)
             {
-                p = get_popup(idx);
-                $el = get_element(idx);
+                var p = get_popup(idx);
+                var $el = get_element(idx);
                 
                 $el.popover(p).popover('show');
                   
+                //scroll if neccessary
                 var docviewTop = $(window).scrollTop();
-                var windowHeight = $(window).height();
-                var docviewBottom =  docviewTop + windowHeight;
                 var top = Math.min($(".popover.in").offset().top, $el.offset().top);
-                var bottom =  Math.max($(".popover.in").offset().bottom, $el.offset().bottom);
                 
                 //distance between docviewTop & min.
                 var topDistance = top - docviewTop;
-                settings.margin = 100;
                 
-                if (topDistance < settings.margin)
+                if (topDistance < settings.margin) //the element too up above
                     $('html,body').animate({
                         scrollTop: top - settings.margin},
                     'slow');
                 else if(!is_entirely_visible($(".popover.in")) || !is_entirely_visible($el))
+                    //the element is too down below
                     $('html,body').animate({
                         scrollTop: top - settings.margin},
                     'slow');
@@ -249,7 +295,6 @@ $(document).ready(function(){
 
             $elements = $(selector);
             count  = $elements.size();
-              
             if (count > 0 && $('div.bootstro-backdrop').length === 0)
             {
                 // Prevents multiple copies
@@ -264,11 +309,11 @@ $(document).ready(function(){
             settings = $.extend(true, {}, defaults); //deep copy
             $.extend(settings, options || {});
             //if options specifies a URL, get the intro configuration from URL via ajax
-            if (typeof options.url != 'undefined')
+            if (typeof settings.url != 'undefined')
             {
                 //get config from ajax
                 $.ajax({
-                    url : options.url,
+                    url : settings.url,
                     success : function(data){
                         if (data.success)
                         {
@@ -276,7 +321,7 @@ $(document).ready(function(){
                             var popover = data.result;
                             //console.log(popover);
                             var selectorArr = [];
-                            $.each(popover, function(i,e){
+                            $.each(popover, function(t,e){
                                 //only deal with the visible element
                                 //build the selector
                                 $.each(e, function(j, attr){

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstro.js Bootstrap Intro.js</title>
+    <title>Bootstro.js demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -144,13 +144,19 @@
       </div>
 
       <div class='row-fluid bootstro_size1' data-bootstro-title="When there's only me" data-bootstro-content="Then there's only a simple popover. Nothing else">
-      Other demos: <br/>
-	      <a class='demo_stopOn' href='#'>No escaping</a> :
+      <h3>Other quick demos:</h3>
+      	<i>View javascript at the end of this HTML file to see show to trigger those actions</i>
+      	<br/><br/>
+	      <a class='demo_stopOn' id='demo_stopOn' href='#'>No escaping</a> :
 	        If you don't want to stop the show on clicking the backdrop or Esc, pass <b>stopOnBackdropClick</b>=false or <b>stopOnEsc</b>=false
 	      <br/>
 	      <a class='demo_size1' href='#'>One element</a>: When there's only one element
 	      <br/>
 	      <a class='demo_nonav' href='#'>No navigation buttons</a>: By passing nextButton='', prevButton='',finishButton=''
+	      <br/>
+	      <a class='demo_ajax'  id='demo_ajax' href='#'>Ajax'ed bootstro</a>: The whole bootstro show data can be gotten from ajax request,this way HTML is totally clean. In this example, it gets from <a target='_blank' href='./bootstro.json'><b>bootstro.json</b></a>
+	      <br/>
+	      
       </div>
       
       <hr>
@@ -171,12 +177,6 @@
           <p><i class='icon-ok'></i> Small (<b>3.0K</b> minified JS & <b>0.5K</b>  minified CSS)</p>
           <p><i class='icon-ok'></i> <b>No collision</b>. Everything <a href='http://enterprisejquery.com/2010/10/how-good-c-habits-can-encourage-bad-javascript-habits-part-1/'>safely</a> namespaced to bootstro.
           All <b>events unbinded</b> when the intro stops</p>
-          <p><i class='icon-ok'></i> <b>Any element anywhere </b> on the page can be intro'ed: popovers are automatically scrolled to so they always get focused</p>
-          <p><i class='icon-ok'></i> <b>Easily customizable</b>: Bootstro provides various public methods so you can control as you like bootstro.start(), bootstro.next(), bootstro.prev()...</p>
-          <p class='bootstro' data-bootstro-step='6' data-bootstro-content='I work with Esc, &rarr; &darr;, &larr; &uarr; keyboard shortcuts too'>
-          <i class='icon-ok'></i> <b>Keyboard shortcuts</b>: Works with Esc, &rarr; &darr;, &larr; &uarr; shortcuts too</p>
-          
-          
         </div>
       
         <div class="span4 bootstro" 
@@ -184,12 +184,15 @@
         	data-bootstro-content="Call bootstro.start('.bootstro') or just <b>bootstro.start()</b>"
         	data-bootstro-step='1'
         	>
-          <h2>Quick Usage</h2>
-          <p><i class='icon-ok'></i> Bootstro requires <a href='http://twitter.github.com/bootstrap/'>bootstrap</a> & <a href='http://twitter.github.com/bootstrap/javascript.html#popovers'>bootstrap popover</a>
-          </p>
-          <p><i class='icon-ok'></i> Add class <b>.bootstro</b> to any element that you'd like to be highlighted</p>
-         <p><i class='icon-ok'></i> Include bootstro.js & bootstro.css</p>  
-         <p><i class='icon-ok'></i> bootstro.start()</p>
+        	<h2>More features </h2>
+          <p><i class='icon-ok'></i> <b>Any element anywhere </b> on the page can be intro'ed: popovers are automatically scrolled to so they always get focused</p>
+          <p><i class='icon-ok'></i> <b>Easily customizable</b>: Bootstro provides various public methods so you can control as you like bootstro.start(), bootstro.next(), bootstro.prev()...</p>
+          <p class='bootstro' data-bootstro-step='6' data-bootstro-content='I work with Esc, &rarr; &darr;, &larr; &uarr; keyboard shortcuts too'>
+          <i class='icon-ok'></i> <b>Keyboard shortcuts</b>: Works with Esc, &rarr; &darr;, &larr; &uarr; shortcuts too</p>
+          <p class='bootstro' data-bootstro-step='8' data-bootstro-content='Slideshow can be loaded via ajax' data-bootstro-content="Set options.url to ajax-request and return a JSON {sucess:true, result:array {title:'abc',content:'abc',width:'200',html:true,nextButtonText:'next',...}}.">
+          <i class='icon-ok'></i> <b>Show can be alternativly loaded via ajax</b>: This way the page HTML can be kept clean, 
+          and server also can decide which elements to show more easily,or translate the show more easily. <a href='javascript:void(0);' class='demo_ajax'>Try it</a></p>
+        	
         </div>
         <div class="span4 bootstro" 
         	data-bootstro-title="I can resize my width too" 
@@ -197,8 +200,15 @@
         	data-bootstro-width="600px"
          	data-bootstro-step='2'
         >
-        <h2>Why?</h2>
-        <p>As part of building a KhanAcademy clone using our home grown SandPHP framework , 
+          <h2>Quick Usage</h2>
+          <p><i class='icon-ok'></i> Bootstro requires <a href='http://twitter.github.com/bootstrap/'>bootstrap</a> & <a href='http://twitter.github.com/bootstrap/javascript.html#popovers'>bootstrap popover</a>
+          </p>
+          <p><i class='icon-ok'></i> Add class <b>.bootstro</b> to any element that you'd like to be highlighted</p>
+         <p><i class='icon-ok'></i> Include bootstro.js & bootstro.css</p>  
+         <p><i class='icon-ok'></i> bootstro.start()</p>
+        
+        <h4>Why?</h4>
+        <p>As part of building a sortof open KhanAcademy clone using our home grown SandPHP framework , 
         I developed a working but spaghetti version (<a href='https://gist.github.com/clu3/5184285'>gist</a>)of 
         Bootstro.js a few weeks ago (I called it live_onpage_help() then). But after seeing HN's 
         <a href='https://news.ycombinator.com/item?id=5380056'>excitement</a> on 
@@ -235,6 +245,10 @@
            <a href='https://github.com/twitter/bootstrap/issues/1730'>un-settable</a> width, specify it like
            <b>data-bootstro-width='500px'</b>. Don't forget the 'px' suffix [optional]
            </p>
+           <p> <b>data-bootstro-nextButtonText</b> : Next button HTML text. For example, in stead of "Next", you can specify
+           
+           </p>
+           
            <p> <b>data-bootstro-html</b> : true|false . Whether or not the popover content will be displayed as HTML or text. Refer to popovers html option.
            </p>
            
@@ -270,21 +284,53 @@
 			<p><b>nextButton</b>: HTML for the next button. It must include a class 'bootstro-next-btn'.
 				defaulted to <pre>< button class="btn btn-primary btn-mini bootstro-next-btn">Next &raquo;< /button></pre>
 				Pass '' if you don't want the buttons (and just using nav keys)
-			</p>				
+			</p>			
+			<p><b>nextButtonText</b>: If you don't want to specify the whole length button text for <b>nextButton</b>, 
+				this is a simplified version. You just need to specify the test "Next &raquo;" and the final button 
+				will be wrapped into 
+				<pre>< button class="btn btn-primary btn-mini bootstro-next-btn">Next &raquo;< /button></pre>
+				Note that, nextButton will override nextButtonText.
+			</p>			
+				
 			<p><b>prevButton</b>: HTML for the prev button. It must include a class 'bootstro-prev-btn'.
 				defaulted to <pre>< button class="btn btn-primary btn-mini bootstro-prev-btn">Next &laquo;< /button></pre>
 				Pass '' if you don't want the buttons (and just using nav keys)
 			</p>	
+			<p><b>prevButtonText</b>: See nextButtonText
+			</p>
+			
 			<p><b>finishButton</b>: HTML for the prev button. It must include a class 'bootstro-finish-btn'.
 				defaulted to <pre>< button class="btn btn-mini btn-success bootstro-finish-btn">< i class="icon-ok" >< /i> Ok I got it, get back to the site< /button></pre>
 				Pass '' if you don't want the buttons (and just using nav keys)
-			</p> 
+			</p>
+			<p><b>prevButtonText</b>: See nextButtonText
+			</p>
+			 
 			<p><b>stopOnBackdropClick</b>: true|false. If true, show will stop onclick on the backdrop. Defaulted to <b>true</b>.
 			Try stopOnBackdropClick=false <a class='demo_stopOn' href='#'>here</a>
 			</p> 
 			<p><b>stopOnEsc</b>: true|false. If true, show will stop onclick on Esc keypress. Defaulted to <b>true</b>.
 			Try stopOnEsc=false <a class='demo_stopOn' href='#'>here</a>
 			</p> 
+			
+			<p><b>margin</b>: How far the intro'ed element should stay away from the top. This is to avoid some elements being
+			partically hidden under Twitter bootstrap's top nav bar (See <a href='https://github.com/clu3/bootstro.js/issues/2'>issue #2</a>)  
+			</p>
+			
+			<p><b>onComplete</b>: Callback function when show's reached the final "slide". Param {idx : activeIndex}  
+			</p>
+			<p><b>onExit</b>: Callback function when show's destroyed and screen returns to normal. 
+			<br/> Function Param {idx : activeIndex}, where activeIndex is the
+			index of the element when the show stopped  
+			</p>
+			<p><b>onStep</b>: Callback function when show's destroyed and screen returns to normal. 
+			<br/> Function params: {idx: activeIndex, direction: [next|prev]}, where activeIndex is the index of active element, direction
+			is the direction of the show when stepping to this element, which can be 'next' or 'prev'   
+			</p>
+			
+			
+			
+			
 			
 			
 		</div>
@@ -375,7 +421,11 @@
 		            finishButton : ''
 		        });    
 		    });
-		    
+		    $(".demo_ajax").click(function(){
+		        bootstro.start('', {
+		            url : './bootstro.json',
+		        });    
+		    });
 		});
 	</script>
   </body>
